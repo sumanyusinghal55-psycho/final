@@ -2,220 +2,186 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>21 Years of Love 💍</title>
+<title>21 Years of Love ❤️</title>
 
 <style>
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: radial-gradient(circle at center, #fff1c1, #f5b7b1);
-  font-family: Georgia, serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, #ffd6e8, #3a0f2b);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-/* Card */
-.card {
-  background: rgba(255,255,255,0.97);
-  padding: 30px;
-  border-radius: 22px;
-  max-width: 720px;
-  width: 94%;
-  text-align: center;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
-  animation: fadeIn 1s ease;
-}
+  #app {
+    background: rgba(0,0,0,0.55);
+    padding: 25px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    animation: fadeIn 1s ease;
+  }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
+  h1, h2 {
+    margin-bottom: 15px;
+  }
 
-/* Buttons */
-button {
-  width: 100%;
-  margin: 10px 0;
-  padding: 13px;
-  border: none;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #b83280, #ff5f9e);
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
-button:hover { opacity: 0.9; }
+  .question {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
 
-/* Candles */
-.candles {
-  position: fixed;
-  bottom: 25px;
-  display: flex;
-  gap: 70px;
-}
-.candle {
-  width: 40px;
-  height: 120px;
-  background: white;
-  border-radius: 8px;
-  position: relative;
-  box-shadow: 0 0 25px rgba(255,200,100,0.8);
-}
-.flame {
-  position: absolute;
-  top: -32px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 32px;
-  background: radial-gradient(circle, #fff7b2, #ff9800);
-  border-radius: 50%;
-  animation: flicker 0.2s infinite alternate;
-}
-.off { display: none; }
+  .options button {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    background: linear-gradient(135deg,#ff4f9a,#ff9ac6);
+    color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
 
-@keyframes flicker {
-  from { transform: translateX(-50%) scale(1); }
-  to { transform: translateX(-50%) scale(1.15); }
-}
+  .options button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255,79,154,0.6);
+  }
 
-/* Photo section */
-.photos {
-  display: flex;
-  gap: 14px;
-  justify-content: center;
-  margin: 20px 0;
-  flex-wrap: wrap;
-}
-.photos img {
-  width: 180px;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-  animation: photoFade 1.2s ease;
-}
-@keyframes photoFade {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+  .panel {
+    animation: slideUp 0.8s ease;
+  }
 
-/* Final glow text */
-.glow {
-  color: #b83280;
-  font-size: 44px;
-  letter-spacing: 3px;
-  text-shadow: 0 0 12px pink;
-  margin-top: 25px;
-}
+  .heart {
+    font-size: 45px;
+    animation: pulse 1.5s infinite;
+  }
 
-/* Confetti */
-.confetti {
-  position: fixed;
-  top: -10px;
-  width: 10px;
-  height: 10px;
-  animation: fall linear infinite;
-}
-@keyframes fall {
-  to { transform: translateY(110vh) rotate(360deg); }
-}
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  audio {
+    display: none;
+  }
 </style>
 </head>
 
 <body>
 
-<!-- Candles -->
-<div class="candles">
-  <div class="candle"><div class="flame" id="flame1"></div></div>
-  <div class="candle"><div class="flame" id="flame2"></div></div>
-</div>
+<div id="app"></div>
 
-<!-- Music -->
-<audio id="music">
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_5b0fbd7d39.mp3">
+<audio autoplay loop>
+  <source src="music/song.mp3" type="audio/mpeg">
 </audio>
 
-<div class="card" id="app">
-  <h1>💐 Happy 21st Anniversary 💐</h1>
-  <p>21 years of love, patience & togetherness ❤️</p>
-  <button onclick="start()">Start the Celebration 🎶</button>
-</div>
-
 <script>
-const app = document.getElementById("app");
-const music = document.getElementById("music");
-
 const questions = [
-  { turn:"Papa", q:"Who stood beside you in every storm?",
-    o:["My wife ❤️","My strength 💪","My forever 💖"] },
-  { turn:"Mummy", q:"Who made every sacrifice worthwhile?",
-    o:["My husband ❤️","My support 🤝","My world 💕"] },
-  { turn:"Papa", q:"What matters most after 21 years?",
-    o:["Her happiness 😊","Peace 🕊️","Togetherness ❤️"] },
-  { turn:"Mummy", q:"What kept this marriage strong?",
-    o:["Trust 🤝","Understanding 💖","Never giving up ❤️"] }
+  {
+    text: "👨 Papa: Who says sorry first after an argument?",
+    options: ["Papa 😄", "Mummy ❤️", "Whoever misses first"],
+    score: [2,2,3]
+  },
+  {
+    text: "👩 Mummy: Who understands you without words?",
+    options: ["Papa ❤️", "Kids 😄", "Only myself"],
+    score: [3,1,1]
+  },
+  {
+    text: "👨 Papa: Best moment with Mummy?",
+    options: ["Everyday life", "Festivals together", "All moments ❤️"],
+    score: [2,2,3]
+  },
+  {
+    text: "👩 Mummy: What makes Papa special?",
+    options: ["His care", "His patience", "Everything ❤️"],
+    score: [2,2,3]
+  },
+  {
+    text: "💞 Together: Secret of 21 years?",
+    options: ["Love", "Understanding", "Never giving up ❤️"],
+    score: [2,2,3]
+  },
+  {
+    text: "💍 Who loves more?",
+    options: ["Papa", "Mummy", "Both equally ❤️"],
+    score: [1,1,3]
+  }
 ];
 
-let i = 0;
+let index = 0;
+let totalScore = 0;
+const app = document.getElementById("app");
 
-function start() {
-  music.volume = 0.5;
-  music.play().catch(()=>{});
-  showQ();
-}
-
-function showQ() {
-  const q = questions[i];
+function showQuestion() {
+  const q = questions[index];
   app.innerHTML = `
-    <h2>${q.turn}'s Turn ❤️</h2>
-    <p>${q.q}</p>
-    ${q.o.map(t=>`<button onclick="next()">${t}</button>`).join("")}
-  `;
-}
-
-function next() {
-  i++;
-  if (i < questions.length) showQ();
-  else showFinal();
-}
-
-function showFinal() {
-  document.getElementById("flame1").classList.add("off");
-  document.getElementById("flame2").classList.add("off");
-  confetti();
-
-  app.innerHTML = `
-    <h1>💍 21 Years of Love 💍</h1>
-
-    <div class="photos">
-      <img src="images/photo1.jpg" alt="Memory 1">
-      <img src="images/photo2.jpg" alt="Memory 2">
-      <img src="images/photo3.jpg" alt="Memory 3">
+    <div class="panel">
+      <h2>Question ${index + 1}</h2>
+      <div class="question">${q.text}</div>
+      <div class="options">
+        ${q.options.map((opt,i) =>
+          `<button onclick="answer(${q.score[i]})">${opt}</button>`
+        ).join("")}
+      </div>
     </div>
-
-    <p style="font-size:18px; line-height:1.6;">
-      From the first day…<br>
-      to today…<br>
-      every moment is a memory ❤️
-    </p>
-
-    <h1 class="glow">WE LOVE YOU ❤️</h1>
-    <p style="font-style:italic;">— Your children</p>
   `;
 }
 
-function confetti() {
-  for (let i = 0; i < 90; i++) {
-    const c = document.createElement("div");
-    c.className = "confetti";
-    c.style.left = Math.random() * 100 + "vw";
-    c.style.animationDuration = (2 + Math.random() * 3) + "s";
-    c.style.background = `hsl(${Math.random()*360},100%,60%)`;
-    document.body.appendChild(c);
+function answer(points) {
+  totalScore += points;
+  index++;
+  if (index < questions.length) {
+    showQuestion();
+  } else {
+    showResult();
   }
 }
+
+function showResult() {
+  app.innerHTML = `
+    <div class="panel">
+      <h1>💍 21 Years of Togetherness 💍</h1>
+
+      <p>
+        Two hearts.<br>
+        One journey.<br>
+        Endless love.
+      </p>
+
+      <h2>Love Score: ${totalScore} ❤️</h2>
+
+      <div class="heart">💖</div>
+
+      <h1 style="margin-top:25px;">WE LOVE YOU ❤️</h1>
+
+      <p style="margin-top:10px; font-style:italic;">
+        — Forever grateful, your children
+      </p>
+    </div>
+  `;
+}
+
+showQuestion();
 </script>
 
 </body>
